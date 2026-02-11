@@ -64,7 +64,7 @@ export class ProductController {
         });
     });
 
-    getCategories = asyncHandler(async (req: AuthRequest, res: Response) => {
+    getCategories = asyncHandler(async (_req: AuthRequest, res: Response) => {
         const categories = await productService.getCategories();
 
         res.status(200).json({
@@ -73,7 +73,7 @@ export class ProductController {
         });
     });
 
-    getBrands = asyncHandler(async (req: AuthRequest, res: Response) => {
+    getBrands = asyncHandler(async (_req: AuthRequest, res: Response) => {
         const brands = await productService.getBrands();
 
         res.status(200).json({

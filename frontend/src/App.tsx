@@ -1,9 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useAppSelector } from './hooks/useRedux';
+import { useAppSelector, useAppDispatch } from './hooks/useRedux';
+import { logout } from './store/slices/authSlice';
+import LoginPage from './pages/LoginPage';
+import ProductListPage from './pages/ProductListPage';
+import CartPage from './pages/CartPage';
 
 // Placeholder components - to be implemented
 const HomePage = () => (
+    // ... keep HomePage ...
     <div style={{ padding: '2rem', textAlign: 'center' }}>
         <h1 className="text-gradient" style={{ fontSize: '3rem', marginBottom: '1rem' }}>
             Welcome to Beauty Clinic
@@ -26,24 +31,10 @@ const HomePage = () => (
     </div>
 );
 
-const LoginPage = () => (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h1>Login Page</h1>
-        <p>Login component to be implemented</p>
-    </div>
-);
-
 const RegisterPage = () => (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
         <h1>Register Page</h1>
         <p>Registration component to be implemented</p>
-    </div>
-);
-
-const ProductListPage = () => (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h1>Products</h1>
-        <p>Product listing component to be implemented</p>
     </div>
 );
 
@@ -54,13 +45,6 @@ const ProductDetailPage = () => (
     </div>
 );
 
-const CartPage = () => (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h1>Shopping Cart</h1>
-        <p>Cart component to be implemented</p>
-    </div>
-);
-
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { isAuthenticated } = useAppSelector((state) => state.auth);
@@ -68,6 +52,9 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 };
 
 function App() {
+    const dispatch = useAppDispatch();
+    const { isAuthenticated } = useAppSelector((state) => state.auth);
+
     return (
         <Router>
             <div className="App" style={{ minHeight: '100vh', background: 'var(--bg-primary)' }}>
@@ -86,8 +73,23 @@ function App() {
                     <div style={{ display: 'flex', gap: '1.5rem' }}>
                         <a href="/products">Products</a>
                         <a href="/cart">Cart</a>
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
+                        {isAuthenticated ? (
+                            <button
+                                onClick={() => dispatch(logout())}
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    color: 'var(--text-primary)',
+                                    cursor: 'pointer',
+                                    fontSize: '1rem',
+                                    fontFamily: 'inherit'
+                                }}
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <a href="/login">Login</a>
+                        )}
                     </div>
                 </nav>
 

@@ -146,13 +146,11 @@ async function main() {
         },
     ];
 
-    for (const product of products) {
-        await prisma.product.upsert({
-            where: { name: product.name },
-            update: {},
-            create: product,
-        });
-    }
+    // Delete existing products and create new ones
+    await prisma.product.deleteMany({});
+    await prisma.product.createMany({
+        data: products,
+    });
     console.log(`✅ Created ${products.length} products`);
 
     console.log('🎉 Seeding completed!');

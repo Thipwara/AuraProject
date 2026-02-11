@@ -1,4 +1,4 @@
-# Beauty Clinic E-Commerce Platform
+# Aura Project
 
 A modern, full-stack e-commerce web application built with Node.js and TypeScript, designed specifically for beauty clinics to showcase and sell their products and services.
 
@@ -95,8 +95,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/beauty-clinic-ecommerce.git
-cd beauty-clinic-ecommerce
+git clone https://github.com/Thipwara/AuraProject.git
+cd AuraProject
 ```
 
 ### 2. Install Dependencies
@@ -224,7 +224,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-beauty-clinic-ecommerce/
+AuraProject/
 ├── backend/
 │   ├── src/
 │   │   ├── config/          # Configuration files
@@ -488,7 +488,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGithub](https://github.com/yourusername)
+- **Thipwara** - *Initial work* - [Thipwara](https://github.com/Thipwara)
 
 ## 🙏 Acknowledgments
 

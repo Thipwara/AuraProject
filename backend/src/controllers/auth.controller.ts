@@ -1,4 +1,4 @@
-import { Response, NextFunction } from 'express';
+import { Response } from 'express';
 import { authService } from '../services/auth.service';
 import { asyncHandler } from '../middleware/error.middleware';
 import { AuthRequest } from '../middleware/auth.middleware';
@@ -68,7 +68,7 @@ export class AuthController {
         });
     });
 
-    logout = asyncHandler(async (req: AuthRequest, res: Response) => {
+    logout = asyncHandler(async (_req: AuthRequest, res: Response) => {
         // In a stateless JWT system, logout is handled client-side
         // If using Redis for token blacklisting, implement it here
         res.status(200).json({

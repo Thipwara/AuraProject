@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
     res.status(200).json({
         status: 'success',
         message: 'Server is running',
@@ -37,7 +37,7 @@ app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/cart`, cartRoutes);
 
 // 404 handler
-app.use((req: Request, res: Response) => {
+app.use((_req: Request, res: Response) => {
     res.status(404).json({
         status: 'error',
         message: 'Route not found',

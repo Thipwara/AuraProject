@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { AnyZodObject, ZodError } from 'zod';
-import { AppError } from './error.middleware';
 
 export const validate = (schema: AnyZodObject) => {
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -17,11 +16,12 @@ export const validate = (schema: AnyZodObject) => {
                     field: err.path.join('.'),
                     message: err.message,
                 }));
-                return res.status(400).json({
+                res.status(400).json({
                     status: 'error',
                     message: 'Validation failed',
                     errors,
                 });
+                return;
             }
             next(error);
         }

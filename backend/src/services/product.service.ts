@@ -1,6 +1,6 @@
 import prisma from '../config/database';
 import { AppError } from '../middleware/error.middleware';
-import { Prisma } from '@prisma/client';
+
 
 export interface ProductFilters {
     search?: string;
@@ -30,25 +30,25 @@ export class ProductService {
             limit = 20,
         } = filters;
 
-        const where: Prisma.ProductWhereInput = {};
+        const where: any = {};
 
         // Search filter
         if (search) {
             where.OR = [
-                { name: { contains: search, mode: 'insensitive' } },
-                { description: { contains: search, mode: 'insensitive' } },
-                { brand: { contains: search, mode: 'insensitive' } },
+                { name: { contains: search } },
+                { description: { contains: search } },
+                { brand: { contains: search } },
             ];
         }
 
         // Category filter
         if (category) {
-            where.category = { equals: category, mode: 'insensitive' };
+            where.category = { equals: category };
         }
 
         // Brand filter
         if (brand) {
-            where.brand = { equals: brand, mode: 'insensitive' };
+            where.brand = { equals: brand };
         }
 
         // Price range filter
@@ -67,7 +67,7 @@ export class ProductService {
         const skip = (page - 1) * limit;
 
         // Sorting
-        const orderBy: Prisma.ProductOrderByWithRelationInput = {
+        const orderBy: any = {
             [sortBy]: sortOrder,
         };
 
@@ -178,7 +178,7 @@ export class ProductService {
             distinct: ['category'],
         });
 
-        return products.map((p) => p.category);
+        return products.map((p: any) => p.category);
     }
 
     async getBrands() {
@@ -187,7 +187,7 @@ export class ProductService {
             distinct: ['brand'],
         });
 
-        return products.map((p) => p.brand);
+        return products.map((p: any) => p.brand);
     }
 }
 
