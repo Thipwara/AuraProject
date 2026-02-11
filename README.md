@@ -1,4 +1,7 @@
 # Aura Project
+<img width="3164" height="1890" alt="image" src="https://github.com/user-attachments/assets/1fd75dea-586e-4f40-91b4-0a6124f21bb7" />
+<img width="3164" height="1890" alt="image" src="https://github.com/user-attachments/assets/3672d6c9-6c29-4c72-9f83-c3f38c629071" />
+
 
 A modern, full-stack e-commerce web application built with Node.js and TypeScript, designed specifically for beauty clinics to showcase and sell their products and services.
 
